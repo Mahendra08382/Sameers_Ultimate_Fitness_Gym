@@ -53,39 +53,13 @@ div[data-testid="stForm"] {
 @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 @keyframes glow { 0% { box-shadow: 0 0 30px rgba(220,38,38,0.5); } 100% { box-shadow: 0 0 70px rgba(220,38,38,0.9); } }
 
-/* ── MOBILE SCALING ONLY ── */
 @media (max-width: 768px) {
-    /* Scale entire app content to fit mobile width */
-    .stApp {
-        font-size: 14px !important;
-    }
-
-    /* Navbar: keep horizontal but shrink */
-    .nav-wrap {
-        padding: 10px 12px !important;
-    }
-    .nav-brand-text {
-        font-size: 1.1rem !important;
-        letter-spacing: 1px !important;
-    }
-    .nav-link {
-        font-size: 0.65rem !important;
-        letter-spacing: 1px !important;
-    }
-    .nav-gap {
-        gap: 10px !important;
-    }
-
-    /* Hero: keep layout, shrink sizes */
-    .hero-badge {
-        font-size: 0.6rem !important;
-        letter-spacing: 2px !important;
-        padding: 5px 12px !important;
-    }
-    .logo-circle {
-        width: 110px !important;
-        height: 110px !important;
-    }
+    .nav-wrap { padding: 10px 12px !important; }
+    .nav-brand-text { font-size: 1.1rem !important; letter-spacing: 1px !important; }
+    .nav-link { font-size: 0.65rem !important; letter-spacing: 1px !important; }
+    .nav-gap { gap: 10px !important; }
+    .hero-badge { font-size: 0.6rem !important; letter-spacing: 2px !important; padding: 5px 12px !important; }
+    .logo-circle { width: 110px !important; height: 110px !important; }
     .logo-gym-icon { font-size: 1.4rem !important; }
     .logo-name { font-size: 0.85rem !important; }
     .logo-ult { font-size: 1rem !important; }
@@ -94,25 +68,14 @@ div[data-testid="stForm"] {
     .hero-title-red { font-size: 3rem !important; letter-spacing: 2px !important; }
     .hero-tagline { font-size: 0.9rem !important; }
     .hero-tagline-quote { font-size: 1.2rem !important; }
-    .hero-btn-primary, .hero-btn-secondary {
-        font-size: 0.7rem !important;
-        padding: 10px 16px !important;
-        letter-spacing: 1px !important;
-    }
-    .stats-row { gap: 0 !important; }
+    .hero-btn-primary, .hero-btn-secondary { font-size: 0.7rem !important; padding: 10px 16px !important; letter-spacing: 1px !important; }
     .stat-number { font-size: 1.8rem !important; }
     .stat-label { font-size: 0.55rem !important; letter-spacing: 1px !important; }
     .stat-divider { padding: 8px 10px !important; }
-
-    /* Marquee shrink */
     .marquee-item { font-size: 0.85rem !important; padding: 0 12px !important; letter-spacing: 2px !important; }
-
-    /* Section headers */
     .sec-title { font-size: 2rem !important; letter-spacing: 2px !important; }
     .sec-sub { font-size: 0.65rem !important; letter-spacing: 2px !important; }
     .sec-pad { padding: 45px 12px !important; }
-
-    /* About: keep 2-col, shrink */
     .about-grid { gap: 20px !important; }
     .about-visual { padding: 30px 15px !important; }
     .about-visual-name { font-size: 1.2rem !important; }
@@ -122,26 +85,18 @@ div[data-testid="stForm"] {
     .about-text-p { font-size: 0.8rem !important; line-height: 1.6 !important; }
     .about-stats-row { gap: 6px !important; }
     .about-stat-box { padding: 8px 10px !important; }
-
-    /* Why grid: keep 3-col, shrink */
     .why-grid { gap: 8px !important; }
     .why-icon { font-size: 1.5rem !important; }
     .why-title { font-size: 0.7rem !important; letter-spacing: 1px !important; }
     .why-desc { font-size: 0.65rem !important; }
     .why-card { padding: 16px 10px !important; }
-
-    /* Services: keep auto-fit, shrink */
     .svc-icon { font-size: 1.8rem !important; }
     .svc-title { font-size: 0.8rem !important; letter-spacing: 1px !important; }
     .svc-desc { font-size: 0.75rem !important; }
     .svc-card { padding: 20px 14px !important; }
-
-    /* Numbers banner: keep 4-col, shrink */
     .num-val { font-size: 2rem !important; }
     .num-label { font-size: 0.6rem !important; letter-spacing: 1px !important; }
     .num-cell { padding: 20px 8px !important; }
-
-    /* Pricing: keep 3-col, shrink */
     .pricing-grid { gap: 8px !important; }
     .plan-name { font-size: 1rem !important; letter-spacing: 1px !important; }
     .plan-price { font-size: 2.2rem !important; }
@@ -151,33 +106,23 @@ div[data-testid="stForm"] {
     .plan-btn { font-size: 0.65rem !important; letter-spacing: 1px !important; padding: 10px !important; }
     .plan-card { padding: 20px 12px !important; }
     .plan-badge { font-size: 0.55rem !important; padding: 4px 12px !important; }
-
-    /* Schedule: keep 4-col table, shrink */
     .sched-head-cell { padding: 10px 8px !important; font-size: 0.65rem !important; letter-spacing: 1px !important; }
     .sched-day { font-size: 0.65rem !important; padding: 10px 8px !important; letter-spacing: 0 !important; }
     .sched-time { font-size: 0.65rem !important; padding: 10px 6px !important; }
     .sched-status { font-size: 0.6rem !important; padding: 10px 6px !important; }
-
-    /* Testimonials: keep auto-fit, shrink */
     .test-stars { font-size: 0.85rem !important; }
     .test-text { font-size: 0.8rem !important; line-height: 1.5 !important; }
     .test-author { font-size: 0.7rem !important; letter-spacing: 1px !important; }
     .test-card { padding: 18px 14px !important; }
-
-    /* Contact cards: keep 4-col, shrink */
     .contact-grid { gap: 8px !important; }
     .contact-icon { font-size: 1.5rem !important; }
     .contact-label { font-size: 0.55rem !important; letter-spacing: 1px !important; }
     .contact-val { font-size: 0.75rem !important; }
     .contact-card { padding: 18px 8px !important; }
-
-    /* CTA banner */
     .cta-title { font-size: 1.8rem !important; letter-spacing: 2px !important; }
     .cta-sub { font-size: 0.85rem !important; }
     .cta-btn-w { font-size: 0.8rem !important; padding: 13px 22px !important; letter-spacing: 2px !important; }
     .cta-btn-t { font-size: 0.8rem !important; padding: 13px 22px !important; letter-spacing: 2px !important; }
-
-    /* Footer */
     .footer-brand { font-size: 1.5rem !important; }
     .footer-sub { font-size: 0.65rem !important; }
     .footer-tagline { font-size: 0.75rem !important; }
@@ -185,7 +130,7 @@ div[data-testid="stForm"] {
     .footer-info { font-size: 0.75rem !important; }
     .footer-copy { font-size: 0.7rem !important; }
     .footer-links-row { gap: 12px !important; }
-    .footer-info-row { gap: 12px !important; flex-direction: column !important; align-items: center !important; }
+    .footer-info-row { gap: 12px !important; }
 }
 
 @media (max-width: 400px) {
@@ -222,26 +167,44 @@ def section_header(title, highlight, subtitle):
     )
 
 
-# ── NAVBAR ──────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════════
+# NAVBAR  ← marquee is INSIDE this same block, right below nav
+# ══════════════════════════════════════════════════════════════
+items = ["💪 TRAIN HARD", "🔥 BURN STRONGER", "⚡ NO EXCUSES",
+         "🏆 CHAMPIONS BUILT HERE", "💥 PUSH YOUR LIMITS", "🎯 RESULTS GUARANTEED"]
+mi = ""
+for item in items * 2:
+    mi += (
+        f'<span class="marquee-item" style="font-family:Bebas Neue,cursive;font-size:1.1rem;'
+        f'color:#fff;letter-spacing:3px;padding:0 20px;">{item}</span>'
+        f'<span style="color:rgba(255,255,255,0.4);padding:0 4px;">•</span>'
+    )
+
 st.markdown(
+    # ── Navbar ──
     '<div class="nav-wrap" style="background:rgba(0,0,0,0.97);border-bottom:2px solid #dc2626;'
     'padding:12px 20px;display:flex;align-items:center;justify-content:space-between;'
     'box-shadow:0 4px 25px rgba(220,38,38,0.3);position:sticky;top:0;z-index:9999;">'
-
     '<div class="nav-brand-text" style="font-family:Bebas Neue,cursive;font-size:1.5rem;color:#fff;letter-spacing:3px;white-space:nowrap;">'
     'SAMEER\'S <span style="color:#dc2626;">ULTIMATE</span>'
     '</div>'
-
     '<div class="nav-gap" style="display:flex;gap:20px;align-items:center;flex-shrink:0;">'
-    '<a class="nav-link" href="#about" style="font-family:Oswald,sans-serif;color:#9ca3af;text-decoration:none;letter-spacing:2px;font-size:0.85rem;text-transform:uppercase;white-space:nowrap;">ABOUT</a>'
+    '<a class="nav-link" href="#about"    style="font-family:Oswald,sans-serif;color:#9ca3af;text-decoration:none;letter-spacing:2px;font-size:0.85rem;text-transform:uppercase;white-space:nowrap;">ABOUT</a>'
     '<a class="nav-link" href="#services" style="font-family:Oswald,sans-serif;color:#9ca3af;text-decoration:none;letter-spacing:2px;font-size:0.85rem;text-transform:uppercase;white-space:nowrap;">SERVICES</a>'
-    '<a class="nav-link" href="#pricing" style="font-family:Oswald,sans-serif;color:#9ca3af;text-decoration:none;letter-spacing:2px;font-size:0.85rem;text-transform:uppercase;white-space:nowrap;">PRICING</a>'
+    '<a class="nav-link" href="#pricing"  style="font-family:Oswald,sans-serif;color:#9ca3af;text-decoration:none;letter-spacing:2px;font-size:0.85rem;text-transform:uppercase;white-space:nowrap;">PRICING</a>'
     '<a class="nav-link" href="#schedule" style="font-family:Oswald,sans-serif;color:#9ca3af;text-decoration:none;letter-spacing:2px;font-size:0.85rem;text-transform:uppercase;white-space:nowrap;">SCHEDULE</a>'
-    '<a class="nav-link" href="#contact" style="font-family:Oswald,sans-serif;color:#dc2626;text-decoration:none;letter-spacing:2px;font-size:0.85rem;text-transform:uppercase;font-weight:700;white-space:nowrap;">JOIN NOW</a>'
+    '<a class="nav-link" href="#contact"  style="font-family:Oswald,sans-serif;color:#dc2626;text-decoration:none;letter-spacing:2px;font-size:0.85rem;text-transform:uppercase;font-weight:700;white-space:nowrap;">JOIN NOW</a>'
     '</div>'
-    '</div>',
+    '</div>'
+
+    # ── Marquee directly below navbar ──
+    '<div style="background:linear-gradient(90deg,#dc2626,#991b1b,#dc2626);padding:11px 0;overflow:hidden;white-space:nowrap;">'
+    f'<div style="display:inline-block;animation:marquee 20s linear infinite;">{mi}</div>'
+    '</div>'
+    '<div style="height:2px;background:linear-gradient(90deg,transparent,#dc2626,transparent);"></div>',
     unsafe_allow_html=True
 )
+
 
 # ── HERO ────────────────────────────────────────────────────
 st.markdown(
@@ -261,9 +224,9 @@ st.markdown(
     'box-shadow:0 0 50px rgba(220,38,38,0.6);animation:glow 2s ease-in-out infinite alternate;">'
     '<div style="text-align:center;padding:8px;">'
     '<div class="logo-gym-icon" style="font-size:1.8rem;">🏋️</div>'
-    '<div class="logo-name" style="font-family:Bebas Neue,cursive;color:#fff;font-size:1rem;letter-spacing:2px;line-height:1.1;">SAMEER\'S</div>'
-    '<div class="logo-ult" style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:1.2rem;letter-spacing:2px;line-height:1.1;">ULTIMATE</div>'
-    '<div class="logo-sub" style="font-family:Rajdhani,sans-serif;color:#6b7280;font-size:0.45rem;letter-spacing:1px;">FITNESS &amp; GYM</div>'
+    '<div class="logo-name"     style="font-family:Bebas Neue,cursive;color:#fff;font-size:1rem;letter-spacing:2px;line-height:1.1;">SAMEER\'S</div>'
+    '<div class="logo-ult"      style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:1.2rem;letter-spacing:2px;line-height:1.1;">ULTIMATE</div>'
+    '<div class="logo-sub"      style="font-family:Rajdhani,sans-serif;color:#6b7280;font-size:0.45rem;letter-spacing:1px;">FITNESS &amp; GYM</div>'
     '</div>'
     '</div>'
 
@@ -284,53 +247,38 @@ st.markdown(
     '</div>'
 
     '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;">'
-    '<a class="hero-btn-primary" href="tel:9483834949" style="background:linear-gradient(135deg,#dc2626,#991b1b);'
-    'color:#fff;font-family:Oswald,sans-serif;font-size:0.95rem;letter-spacing:2px;text-transform:uppercase;'
-    'padding:14px 28px;border-radius:4px;text-decoration:none;border:2px solid #dc2626;white-space:nowrap;">📞 JOIN — 9483834949</a>'
+    '<a class="hero-btn-primary" href="tel:9483834949" '
+    'style="background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;font-family:Oswald,sans-serif;'
+    'font-size:0.95rem;letter-spacing:2px;text-transform:uppercase;padding:14px 28px;border-radius:4px;'
+    'text-decoration:none;border:2px solid #dc2626;white-space:nowrap;">📞 JOIN — 9483834949</a>'
     '<a class="hero-btn-secondary" href="https://www.instagram.com/sameers_ultimatefitness/" target="_blank" '
     'style="background:transparent;color:#fff;font-family:Oswald,sans-serif;font-size:0.95rem;'
     'letter-spacing:2px;text-transform:uppercase;padding:14px 28px;border-radius:4px;'
     'text-decoration:none;border:2px solid #fff;white-space:nowrap;">📸 FOLLOW US</a>'
     '</div>'
 
-    '<div class="stats-row" style="display:flex;justify-content:center;flex-wrap:nowrap;">'
+    '<div style="display:flex;justify-content:center;flex-wrap:nowrap;">'
     '<div class="stat-divider" style="text-align:center;padding:10px 20px;border-right:1px solid #374151;">'
     '<div class="stat-number" style="font-family:Bebas Neue,cursive;font-size:2.5rem;color:#dc2626;line-height:1;">10+</div>'
-    '<div class="stat-label" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Years</div>'
+    '<div class="stat-label"  style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Years</div>'
     '</div>'
     '<div class="stat-divider" style="text-align:center;padding:10px 20px;border-right:1px solid #374151;">'
     '<div class="stat-number" style="font-family:Bebas Neue,cursive;font-size:2.5rem;color:#dc2626;line-height:1;">500+</div>'
-    '<div class="stat-label" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Members</div>'
+    '<div class="stat-label"  style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Members</div>'
     '</div>'
     '<div class="stat-divider" style="text-align:center;padding:10px 20px;border-right:1px solid #374151;">'
     '<div class="stat-number" style="font-family:Bebas Neue,cursive;font-size:2.5rem;color:#dc2626;line-height:1;">994</div>'
-    '<div class="stat-label" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Followers</div>'
+    '<div class="stat-label"  style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Followers</div>'
     '</div>'
     '<div class="stat-divider" style="text-align:center;padding:10px 20px;">'
     '<div class="stat-number" style="font-family:Bebas Neue,cursive;font-size:2.5rem;color:#dc2626;line-height:1;">100%</div>'
-    '<div class="stat-label" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Dedication</div>'
+    '<div class="stat-label"  style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Dedication</div>'
     '</div>'
     '</div>'
     '</div>',
     unsafe_allow_html=True
 )
 
-# ── MARQUEE ─────────────────────────────────────────────────
-items = ["💪 TRAIN HARD", "🔥 BURN STRONGER", "⚡ NO EXCUSES",
-         "🏆 CHAMPIONS BUILT HERE", "💥 PUSH YOUR LIMITS", "🎯 RESULTS GUARANTEED"]
-mi = ""
-for item in items * 2:
-    mi += (f'<span class="marquee-item" style="font-family:Bebas Neue,cursive;font-size:1.1rem;'
-           f'color:#fff;letter-spacing:3px;padding:0 20px;">{item}</span>'
-           f'<span style="color:rgba(255,255,255,0.4);padding:0 4px;">•</span>')
-
-st.markdown(
-    '<div style="background:linear-gradient(90deg,#dc2626,#991b1b,#dc2626);padding:12px 0;overflow:hidden;white-space:nowrap;">'
-    f'<div style="display:inline-block;animation:marquee 20s linear infinite;">{mi}</div>'
-    '</div>'
-    '<div style="height:2px;background:linear-gradient(90deg,transparent,#dc2626,transparent);"></div>',
-    unsafe_allow_html=True
-)
 
 # ── ABOUT ───────────────────────────────────────────────────
 st.markdown('<div id="about" class="sec-pad" style="background:#050505;padding:70px 20px;">', unsafe_allow_html=True)
@@ -350,15 +298,15 @@ st.markdown(
     '</p>'
     '<div class="about-stats-row" style="display:flex;gap:10px;flex-wrap:wrap;">'
     '<div class="about-stat-box" style="background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.35);border-radius:6px;padding:10px 18px;text-align:center;">'
-    '<div class="about-stat-val" style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:1.6rem;line-height:1;">10+</div>'
+    '<div class="about-stat-val"   style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:1.6rem;line-height:1;">10+</div>'
     '<div class="about-stat-label" style="font-family:Oswald,sans-serif;color:#9ca3af;font-size:0.65rem;letter-spacing:2px;">YEARS</div>'
     '</div>'
     '<div class="about-stat-box" style="background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.35);border-radius:6px;padding:10px 18px;text-align:center;">'
-    '<div class="about-stat-val" style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:1.6rem;line-height:1;">500+</div>'
+    '<div class="about-stat-val"   style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:1.6rem;line-height:1;">500+</div>'
     '<div class="about-stat-label" style="font-family:Oswald,sans-serif;color:#9ca3af;font-size:0.65rem;letter-spacing:2px;">MEMBERS</div>'
     '</div>'
     '<div class="about-stat-box" style="background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.35);border-radius:6px;padding:10px 18px;text-align:center;">'
-    '<div class="about-stat-val" style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:1.6rem;line-height:1;">100%</div>'
+    '<div class="about-stat-val"   style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:1.6rem;line-height:1;">100%</div>'
     '<div class="about-stat-label" style="font-family:Oswald,sans-serif;color:#9ca3af;font-size:0.65rem;letter-spacing:2px;">RESULTS</div>'
     '</div>'
     '</div>'
@@ -369,7 +317,7 @@ st.markdown(
     'padding:40px 20px;text-align:center;box-shadow:0 20px 60px rgba(220,38,38,0.25);">'
     '<div style="font-size:3rem;margin-bottom:10px;">🏋️</div>'
     '<div class="about-visual-name" style="font-family:Bebas Neue,cursive;color:#fff;font-size:1.5rem;letter-spacing:4px;">SAMEER\'S</div>'
-    '<div class="about-visual-ult" style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:2.2rem;letter-spacing:4px;line-height:1;">ULTIMATE</div>'
+    '<div class="about-visual-ult"  style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:2.2rem;letter-spacing:4px;line-height:1;">ULTIMATE</div>'
     '<div style="height:2px;background:linear-gradient(90deg,transparent,#dc2626,transparent);margin:10px 0;"></div>'
     '<div style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.7rem;letter-spacing:3px;">FITNESS &amp; GYM</div>'
     '<div style="font-family:Rajdhani,sans-serif;color:#4b5563;font-size:0.65rem;letter-spacing:2px;margin-top:4px;">EST 2014</div>'
@@ -381,25 +329,26 @@ st.markdown(
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
 
+
 # ── WHY CHOOSE US ───────────────────────────────────────────
 st.markdown('<div class="sec-pad" style="background:#000;padding:70px 20px;">', unsafe_allow_html=True)
 section_header("WHY", "CHOOSE US", "WHAT MAKES US KARWAR'S BEST GYM")
 why_items = [
-    ("🏆", "PROVEN RESULTS", "Hundreds of success stories from real members who transformed their bodies."),
-    ("💡", "EXPERT COACHING", "Certified trainers with years of experience guiding you every step."),
-    ("⚙️", "MODERN EQUIPMENT", "State-of-the-art machines and free weights for the ultimate workout."),
+    ("🏆", "PROVEN RESULTS",     "Hundreds of success stories from real members who transformed their bodies."),
+    ("💡", "EXPERT COACHING",    "Certified trainers with years of experience guiding you every step."),
+    ("⚙️", "MODERN EQUIPMENT",  "State-of-the-art machines and free weights for the ultimate workout."),
     ("🔥", "INTENSE ATMOSPHERE", "An electrifying environment that keeps you motivated every day."),
-    ("👥", "STRONG COMMUNITY", "A brotherhood of fitness enthusiasts pushing each other to excel."),
-    ("📍", "PRIME LOCATION", "Conveniently located on Kodibaga Main Road, Karwar."),
+    ("👥", "STRONG COMMUNITY",   "A brotherhood of fitness enthusiasts pushing each other to excel."),
+    ("📍", "PRIME LOCATION",     "Conveniently located on Kodibaga Main Road, Karwar."),
 ]
 wg = '<div class="why-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1100px;margin:0 auto;">'
 for icon, title, desc in why_items:
     wg += (
         '<div class="why-card" style="background:rgba(220,38,38,0.05);border:1px solid rgba(220,38,38,0.2);'
         'border-radius:10px;padding:24px 16px;text-align:center;">'
-        f'<div class="why-icon" style="font-size:2rem;margin-bottom:10px;">{icon}</div>'
+        f'<div class="why-icon"  style="font-size:2rem;margin-bottom:10px;">{icon}</div>'
         f'<div class="why-title" style="font-family:Oswald,sans-serif;color:#fff;font-size:0.95rem;letter-spacing:2px;margin-bottom:7px;">{title}</div>'
-        f'<div class="why-desc" style="font-family:Rajdhani,sans-serif;color:#6b7280;font-size:0.85rem;line-height:1.5;">{desc}</div>'
+        f'<div class="why-desc"  style="font-family:Rajdhani,sans-serif;color:#6b7280;font-size:0.85rem;line-height:1.5;">{desc}</div>'
         '</div>'
     )
 wg += '</div>'
@@ -407,34 +356,36 @@ st.markdown(wg, unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
 
+
 # ── SERVICES ────────────────────────────────────────────────
 st.markdown('<div id="services" class="sec-pad" style="background:#050505;padding:70px 20px;">', unsafe_allow_html=True)
 section_header("OUR", "SERVICES", "EVERYTHING YOU NEED TO REACH YOUR PEAK")
 services = [
-    ("🏋️", "WEIGHT TRAINING", "Comprehensive strength training with free weights, barbells, and machines."),
-    ("🔥", "CARDIO ZONE", "Treadmills, bikes, and ellipticals to torch calories and boost endurance."),
-    ("🥊", "COMBAT FITNESS", "Boxing bags and combat training to build endurance, agility, and power."),
-    ("👤", "PERSONAL TRAINING", "One-on-one sessions with certified trainers tailored to your goals."),
-    ("🍎", "NUTRITION GUIDANCE", "Personalized diet plans and nutritional advice for your transformation."),
-    ("⚡", "HIIT CLASSES", "High-Intensity Interval Training that maximizes fat burn in minimum time."),
-    ("💪", "BODY BUILDING", "Dedicated programs for those looking to sculpt the perfect physique."),
-    ("🧘", "FLEXIBILITY & CORE", "Stretching routines and core strengthening for performance and recovery."),
-    ("📊", "BODY ASSESSMENT", "Regular body composition analysis and progress tracking to stay on target."),
+    ("🏋️", "WEIGHT TRAINING",     "Comprehensive strength training with free weights, barbells, and machines."),
+    ("🔥", "CARDIO ZONE",          "Treadmills, bikes, and ellipticals to torch calories and boost endurance."),
+    ("🥊", "COMBAT FITNESS",       "Boxing bags and combat training to build endurance, agility, and power."),
+    ("👤", "PERSONAL TRAINING",    "One-on-one sessions with certified trainers tailored to your goals."),
+    ("🍎", "NUTRITION GUIDANCE",   "Personalized diet plans and nutritional advice for your transformation."),
+    ("⚡", "HIIT CLASSES",         "High-Intensity Interval Training that maximizes fat burn in minimum time."),
+    ("💪", "BODY BUILDING",        "Dedicated programs for those looking to sculpt the perfect physique."),
+    ("🧘", "FLEXIBILITY & CORE",   "Stretching routines and core strengthening for performance and recovery."),
+    ("📊", "BODY ASSESSMENT",      "Regular body composition analysis and progress tracking to stay on target."),
 ]
 sg = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;max-width:1150px;margin:0 auto;">'
 for icon, title, desc in services:
     sg += (
         '<div class="svc-card" style="background:linear-gradient(135deg,#111,#1a1a1a);border:1px solid #1f2937;'
         'border-top:3px solid #dc2626;border-radius:10px;padding:26px 20px;text-align:center;">'
-        f'<div class="svc-icon" style="font-size:2.2rem;margin-bottom:12px;">{icon}</div>'
+        f'<div class="svc-icon"  style="font-size:2.2rem;margin-bottom:12px;">{icon}</div>'
         f'<div class="svc-title" style="font-family:Oswald,sans-serif;color:#fff;font-size:1rem;letter-spacing:2px;margin-bottom:9px;">{title}</div>'
-        f'<div class="svc-desc" style="font-family:Rajdhani,sans-serif;color:#6b7280;font-size:0.88rem;line-height:1.55;">{desc}</div>'
+        f'<div class="svc-desc"  style="font-family:Rajdhani,sans-serif;color:#6b7280;font-size:0.88rem;line-height:1.55;">{desc}</div>'
         '</div>'
     )
 sg += '</div>'
 st.markdown(sg, unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
+
 
 # ── STATS BANNER ────────────────────────────────────────────
 st.markdown(
@@ -445,19 +396,19 @@ st.markdown(
     '<div style="display:grid;grid-template-columns:repeat(4,1fr);max-width:900px;margin:0 auto;'
     'background:#0a0a0a;border-radius:12px;overflow:hidden;border:1px solid #1f2937;">'
     '<div class="num-cell" style="padding:28px 10px;text-align:center;border-right:1px solid #1f2937;">'
-    '<div class="num-val" style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">10+</div>'
+    '<div class="num-val"   style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">10+</div>'
     '<div class="num-label" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;">Years</div>'
     '</div>'
     '<div class="num-cell" style="padding:28px 10px;text-align:center;border-right:1px solid #1f2937;">'
-    '<div class="num-val" style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">500+</div>'
+    '<div class="num-val"   style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">500+</div>'
     '<div class="num-label" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;">Members</div>'
     '</div>'
     '<div class="num-cell" style="padding:28px 10px;text-align:center;border-right:1px solid #1f2937;">'
-    '<div class="num-val" style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">50+</div>'
+    '<div class="num-val"   style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">50+</div>'
     '<div class="num-label" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;">Equipment</div>'
     '</div>'
     '<div class="num-cell" style="padding:28px 10px;text-align:center;">'
-    '<div class="num-val" style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">994</div>'
+    '<div class="num-val"   style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">994</div>'
     '<div class="num-label" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;">Followers</div>'
     '</div>'
     '</div>'
@@ -466,16 +417,17 @@ st.markdown(
 )
 divider()
 
+
 # ── PRICING ─────────────────────────────────────────────────
 st.markdown('<div id="pricing" class="sec-pad" style="background:#000;padding:70px 20px;">', unsafe_allow_html=True)
 section_header("MEMBERSHIP", "PLANS", "INVEST IN YOUR BEST SELF")
 
 
 def pricing_card(name, price, features, featured=False):
-    bg = "linear-gradient(135deg,#1a0000,#2d0000)" if featured else "#111"
+    bg     = "linear-gradient(135deg,#1a0000,#2d0000)" if featured else "#111"
     border = "2px solid #dc2626" if featured else "1px solid #1f2937"
     shadow = "box-shadow:0 20px 60px rgba(220,38,38,0.3);" if featured else ""
-    badge = (
+    badge  = (
         '<div class="plan-badge" style="position:absolute;top:0;left:50%;transform:translateX(-50%);'
         'background:linear-gradient(90deg,#dc2626,#991b1b);color:#fff;'
         'font-family:Oswald,sans-serif;font-size:0.65rem;letter-spacing:2px;'
@@ -503,7 +455,7 @@ def pricing_card(name, price, features, featured=False):
     )
 
 
-pg = '<div class="pricing-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1050px;margin:0 auto;align-items:start;">'
+pg  = '<div class="pricing-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1050px;margin:0 auto;align-items:start;">'
 pg += pricing_card("🥉 STARTER", "599",
                    ["Gym Access — All Equipment", "Locker Room Access", "Basic Fitness Assessment",
                     "Group Workout Sessions", "Cardio Zone Access"])
@@ -523,6 +475,7 @@ pg += ('<div style="text-align:center;margin-top:28px;">'
 st.markdown(pg, unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
+
 
 # ── SCHEDULE ────────────────────────────────────────────────
 st.markdown('<div id="schedule" class="sec-pad" style="background:#050505;padding:70px 20px;">', unsafe_allow_html=True)
@@ -556,16 +509,14 @@ for day, morning, evening, status, sc_col, bg in days:
     dc = "#dc2626" if "OPEN" in status else "#6b7280"
     sch += (
         f'<tr style="background:{bg};border-bottom:1px solid #1f2937;">'
-        f'<td class="sched-day" style="padding:12px 14px;font-family:Oswald,sans-serif;color:{dc};font-size:0.82rem;letter-spacing:1px;">{day}</td>'
-        f'<td class="sched-time" style="padding:12px 14px;font-family:Rajdhani,sans-serif;color:#d1d5db;font-size:0.85rem;">{morning}</td>'
-        f'<td class="sched-time" style="padding:12px 14px;font-family:Rajdhani,sans-serif;color:#d1d5db;font-size:0.85rem;">{evening}</td>'
+        f'<td class="sched-day"    style="padding:12px 14px;font-family:Oswald,sans-serif;color:{dc};font-size:0.82rem;letter-spacing:1px;">{day}</td>'
+        f'<td class="sched-time"   style="padding:12px 14px;font-family:Rajdhani,sans-serif;color:#d1d5db;font-size:0.85rem;">{morning}</td>'
+        f'<td class="sched-time"   style="padding:12px 14px;font-family:Rajdhani,sans-serif;color:#d1d5db;font-size:0.85rem;">{evening}</td>'
         f'<td class="sched-status" style="padding:12px 14px;font-family:Rajdhani,sans-serif;color:{sc_col};font-size:0.82rem;">{status}</td>'
         f'</tr>'
     )
 sch += (
-    '</tbody>'
-    '</table>'
-    '</div>'
+    '</tbody></table></div>'
     '<div style="text-align:center;margin-top:20px;">'
     '<div style="display:inline-block;background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.3);'
     'border-radius:8px;padding:11px 18px;max-width:95%;">'
@@ -577,6 +528,7 @@ st.markdown(sch, unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
 
+
 # ── TESTIMONIALS ────────────────────────────────────────────
 st.markdown('<div class="sec-pad" style="background:#000;padding:70px 20px;">', unsafe_allow_html=True)
 section_header("MEMBER", "STORIES", "REAL PEOPLE. REAL RESULTS.")
@@ -585,15 +537,15 @@ testimonials = [
     ("Best gym in Karwar! Electric atmosphere. Walk in tired, walk out unstoppable. Sameer sir checks your form!", "PRIYA S.", "2022"),
     ("Nutrition guidance alone was worth the fee. From 65kg to lean 72kg in 8 months. Pure muscle gains!", "VISHAL D.", "2019"),
     ("As a woman I was nervous. Environment is so welcoming and professional. Trainers are amazing!", "SNEHA R.", "2023"),
-    ("Nothing compares to Sameer's. Personal training exceptional. Transformation in 3 months was unbelievable!", "AKASH M.", "2020"),
+    ("Nothing compares to Sameer's. Personal training exceptional. Transformation in 3 months unbelievable!", "AKASH M.", "2020"),
     ("5:30 AM sessions are my favorite! Clean gym, pumping music, amazing community spirit. Best decision!", "ADITYA N.", "2022"),
 ]
 tg = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;max-width:1100px;margin:0 auto;">'
 for text, author, year in testimonials:
     tg += (
         '<div class="test-card" style="background:#111;border:1px solid #1f2937;border-radius:10px;padding:24px;border-top:3px solid #dc2626;">'
-        f'<div class="test-stars" style="color:#fbbf24;font-size:1rem;margin-bottom:8px;">★★★★★</div>'
-        f'<div class="test-text" style="font-family:Rajdhani,sans-serif;color:#d1d5db;font-size:0.95rem;line-height:1.65;margin-bottom:14px;font-style:italic;">"{text}"</div>'
+        f'<div class="test-stars"  style="color:#fbbf24;font-size:1rem;margin-bottom:8px;">★★★★★</div>'
+        f'<div class="test-text"   style="font-family:Rajdhani,sans-serif;color:#d1d5db;font-size:0.95rem;line-height:1.65;margin-bottom:14px;font-style:italic;">"{text}"</div>'
         f'<div class="test-author" style="font-family:Oswald,sans-serif;color:#dc2626;font-size:0.82rem;letter-spacing:2px;">— {author}, since {year}</div>'
         '</div>'
     )
@@ -602,31 +554,28 @@ st.markdown(tg, unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
 
+
 # ── CONTACT ─────────────────────────────────────────────────
 st.markdown('<div id="contact" class="sec-pad" style="background:#050505;padding:70px 20px;">', unsafe_allow_html=True)
 section_header("FIND &amp;", "CONNECT", "WE'D LOVE TO HEAR FROM YOU")
 
 contact_cards = [
-    ("📞", "CALL / WHATSAPP", "9483834949", "tel:9483834949"),
-    ("📸", "INSTAGRAM", "@sameers_ultimatefitness<br><span style='font-size:0.75rem;color:#6b7280;'>994 Followers</span>", "https://www.instagram.com/sameers_ultimatefitness/"),
-    ("📍", "LOCATION", "Kodibaga Main Road,<br>Karwar, Karnataka 581301", "https://maps.google.com/?q=Kodibaga+Main+Road+Karwar+Karnataka+581301"),
-    ("⏰", "HOURS", "Mon–Sat: 5:30AM–9:30PM<br>Sunday: 6AM–10AM", None),
+    ("📞", "CALL / WHATSAPP", "9483834949",                                                                                  "tel:9483834949"),
+    ("📸", "INSTAGRAM",       "@sameers_ultimatefitness<br><span style='font-size:0.75rem;color:#6b7280;'>994 Followers</span>", "https://www.instagram.com/sameers_ultimatefitness/"),
+    ("📍", "LOCATION",        "Kodibaga Main Road,<br>Karwar, Karnataka 581301",                                               "https://maps.google.com/?q=Kodibaga+Main+Road+Karwar+Karnataka+581301"),
+    ("⏰", "HOURS",           "Mon–Sat: 5:30AM–9:30PM<br>Sunday: 6AM–10AM",                                                   None),
 ]
-
 cg = '<div class="contact-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1000px;margin:0 auto 45px;">'
 for icon, label, val, link in contact_cards:
     inner = (
         f'<div class="contact-card" style="background:#111;border:1px solid #1f2937;border-radius:10px;'
         f'padding:24px 12px;text-align:center;border-top:3px solid #dc2626;">'
-        f'<div class="contact-icon" style="font-size:1.8rem;margin-bottom:9px;">{icon}</div>'
+        f'<div class="contact-icon"  style="font-size:1.8rem;margin-bottom:9px;">{icon}</div>'
         f'<div class="contact-label" style="font-family:Oswald,sans-serif;color:#dc2626;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">{label}</div>'
-        f'<div class="contact-val" style="font-family:Rajdhani,sans-serif;color:#fff;font-size:0.85rem;line-height:1.5;">{val}</div>'
+        f'<div class="contact-val"   style="font-family:Rajdhani,sans-serif;color:#fff;font-size:0.85rem;line-height:1.5;">{val}</div>'
         f'</div>'
     )
-    if link:
-        cg += f'<a href="{link}" target="_blank" style="text-decoration:none;">{inner}</a>'
-    else:
-        cg += inner
+    cg += f'<a href="{link}" target="_blank" style="text-decoration:none;">{inner}</a>' if link else inner
 cg += '</div>'
 st.markdown(cg, unsafe_allow_html=True)
 
@@ -643,6 +592,7 @@ st.markdown(
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
 
+
 # ── CONTACT FORM ────────────────────────────────────────────
 st.markdown('<div class="sec-pad" style="background:#000;padding:60px 20px 20px;">', unsafe_allow_html=True)
 section_header("START YOUR", "JOURNEY", "FILL THE FORM — WE'LL CALL YOU BACK")
@@ -650,9 +600,9 @@ section_header("START YOUR", "JOURNEY", "FILL THE FORM — WE'LL CALL YOU BACK")
 col1, col2, col3 = st.columns([0.1, 0.8, 0.1])
 with col2:
     with st.form("join_form", clear_on_submit=True):
-        name = st.text_input("YOUR FULL NAME *")
+        name  = st.text_input("YOUR FULL NAME *")
         phone = st.text_input("MOBILE NUMBER *")
-        goal = st.selectbox("YOUR FITNESS GOAL", [
+        goal  = st.selectbox("YOUR FITNESS GOAL", [
             "🏋️ Build Muscle & Strength",
             "🔥 Weight Loss & Fat Burning",
             "💪 Full Body Transformation",
@@ -668,19 +618,18 @@ with col2:
             "📅 Annual Plan",
             "❓ Not sure — Please advise",
         ])
-        msg = st.text_area("MESSAGE (OPTIONAL)", height=90,
-                           placeholder="Tell us about your fitness goals...")
+        msg       = st.text_area("MESSAGE (OPTIONAL)", height=90, placeholder="Tell us about your fitness goals...")
         submitted = st.form_submit_button("💪 SEND — LET'S GET STARTED!")
         if submitted:
             if name.strip() and phone.strip():
-                st.success(
-                    f"✅ Awesome {name.upper()}! We'll call you on {phone} within 24 hours. Get ready to transform! 💪")
+                st.success(f"✅ Awesome {name.upper()}! We'll call you on {phone} within 24 hours. Get ready to transform! 💪")
                 st.balloons()
             else:
                 st.error("⚠️ Please enter your name and phone number.")
 
 st.markdown('<div style="padding-bottom:50px;"></div>', unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 # ── CTA BANNER ──────────────────────────────────────────────
 st.markdown(
@@ -692,18 +641,19 @@ st.markdown(
     '<div class="cta-sub" style="font-family:Rajdhani,sans-serif;color:rgba(255,255,255,0.8);'
     'font-size:clamp(0.9rem,3vw,1.2rem);margin-bottom:28px;">Don\'t wait. Don\'t make excuses. <strong>START NOW.</strong></div>'
     '<div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">'
-    '<a class="cta-btn-w" href="tel:9483834949" style="display:inline-block;background:#fff;color:#dc2626;'
-    'font-family:Oswald,sans-serif;font-size:1rem;font-weight:700;letter-spacing:3px;'
-    'text-transform:uppercase;padding:15px 32px;border-radius:4px;text-decoration:none;white-space:nowrap;">📞 CALL: 9483834949</a>'
+    '<a class="cta-btn-w" href="tel:9483834949" '
+    'style="display:inline-block;background:#fff;color:#dc2626;font-family:Oswald,sans-serif;'
+    'font-size:1rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;'
+    'padding:15px 32px;border-radius:4px;text-decoration:none;white-space:nowrap;">📞 CALL: 9483834949</a>'
     '<a class="cta-btn-t" href="https://www.instagram.com/sameers_ultimatefitness/" target="_blank" '
-    'style="display:inline-block;background:transparent;color:#fff;'
-    'font-family:Oswald,sans-serif;font-size:1rem;font-weight:700;letter-spacing:3px;'
-    'text-transform:uppercase;padding:15px 32px;border-radius:4px;text-decoration:none;'
-    'border:2px solid rgba(255,255,255,0.8);white-space:nowrap;">📸 FOLLOW US</a>'
+    'style="display:inline-block;background:transparent;color:#fff;font-family:Oswald,sans-serif;'
+    'font-size:1rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;'
+    'padding:15px 32px;border-radius:4px;text-decoration:none;border:2px solid rgba(255,255,255,0.8);white-space:nowrap;">📸 FOLLOW US</a>'
     '</div>'
     '</div>',
     unsafe_allow_html=True
 )
+
 
 # ── FOOTER ──────────────────────────────────────────────────
 st.markdown(
@@ -711,12 +661,12 @@ st.markdown(
     '<div class="footer-brand" style="font-family:Bebas Neue,cursive;font-size:2rem;color:#fff;letter-spacing:4px;margin-bottom:3px;">'
     'SAMEER\'S <span style="color:#dc2626;">ULTIMATE</span>'
     '</div>'
-    '<div class="footer-sub" style="font-family:Oswald,sans-serif;font-size:0.8rem;color:#6b7280;letter-spacing:4px;margin-bottom:4px;">FITNESS &amp; GYM</div>'
+    '<div class="footer-sub"     style="font-family:Oswald,sans-serif;font-size:0.8rem;color:#6b7280;letter-spacing:4px;margin-bottom:4px;">FITNESS &amp; GYM</div>'
     '<div class="footer-tagline" style="font-family:Rajdhani,sans-serif;color:#4b5563;font-size:0.85rem;font-style:italic;margin-bottom:20px;">"A Place Where Champions Are Built" — Est. 2014</div>'
     '<div class="footer-links-row" style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:18px;">'
-    '<a class="footer-link" href="#about" style="font-family:Oswald,sans-serif;color:#4b5563;text-decoration:none;letter-spacing:2px;font-size:0.78rem;text-transform:uppercase;">About</a>'
+    '<a class="footer-link" href="#about"    style="font-family:Oswald,sans-serif;color:#4b5563;text-decoration:none;letter-spacing:2px;font-size:0.78rem;text-transform:uppercase;">About</a>'
     '<a class="footer-link" href="#services" style="font-family:Oswald,sans-serif;color:#4b5563;text-decoration:none;letter-spacing:2px;font-size:0.78rem;text-transform:uppercase;">Services</a>'
-    '<a class="footer-link" href="#pricing" style="font-family:Oswald,sans-serif;color:#4b5563;text-decoration:none;letter-spacing:2px;font-size:0.78rem;text-transform:uppercase;">Pricing</a>'
+    '<a class="footer-link" href="#pricing"  style="font-family:Oswald,sans-serif;color:#4b5563;text-decoration:none;letter-spacing:2px;font-size:0.78rem;text-transform:uppercase;">Pricing</a>'
     '<a class="footer-link" href="#schedule" style="font-family:Oswald,sans-serif;color:#4b5563;text-decoration:none;letter-spacing:2px;font-size:0.78rem;text-transform:uppercase;">Schedule</a>'
     '<a class="footer-link" href="https://www.instagram.com/sameers_ultimatefitness/" target="_blank" style="font-family:Oswald,sans-serif;color:#dc2626;text-decoration:none;letter-spacing:2px;font-size:0.78rem;">Instagram</a>'
     '<a class="footer-link" href="tel:9483834949" style="font-family:Oswald,sans-serif;color:#dc2626;text-decoration:none;letter-spacing:2px;font-size:0.78rem;">Call Us</a>'
