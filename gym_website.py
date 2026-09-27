@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Sameer's Ultimate Fitness & Gym",
+    page_title="Sameer's Ultimate Fitness & Gym | Gym in Karwar",
     page_icon="💪",
     layout="wide",
     initial_sidebar_state="collapsed"
