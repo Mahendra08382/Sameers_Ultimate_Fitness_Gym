@@ -1,4 +1,21 @@
 import streamlit as st
+import base64
+from pathlib import Path
+
+# ── Helper to convert local image to base64 ──
+@st.cache_data(show_spinner=False)
+def get_image_base64(image_path):
+    """Convert local image to base64 string for embedding in HTML"""
+    try:
+        with open(image_path, "rb") as img_file:
+            encoded = base64.b64encode(img_file.read()).decode()
+        # Detect image type from extension
+        ext = Path(image_path).suffix.lower().replace('.', '')
+        if ext == 'jpg':
+            ext = 'jpeg'
+        return f"data:image/{ext};base64,{encoded}"
+    except FileNotFoundError:
+        return "" 
 
 st.set_page_config(
     page_title="Sameer's Ultimate Fitness & Gym",
@@ -19,7 +36,6 @@ header     {visibility:hidden;}
 
 .stApp { background:#0a0a0a !important; }
 
-/* Only remove the outer page padding — nothing else */
 .block-container {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
@@ -86,13 +102,13 @@ header     {visibility:hidden;}
     will-change: transform;
 }
 
-/* ── SPACER — pushes page content below fixed nav ── */
+/* ── SPACER ── */
 .nav-spacer {
     height: 88px;
     display: block;
 }
 
-/* ── SMOOTH SCROLL + ANCHOR OFFSET ── */
+/* ── SMOOTH SCROLL ── */
 html { scroll-behavior: smooth; }
 #home, #about, #services, #pricing, #schedule, #contact {
     scroll-margin-top: 90px;
@@ -108,6 +124,7 @@ html { scroll-behavior: smooth; }
 /* ── ANIMATIONS ── */
 @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 @keyframes glow    { 0%{box-shadow:0 0 30px rgba(220,38,38,0.5)} 100%{box-shadow:0 0 70px rgba(220,38,38,0.9)} }
+@keyframes slideUp { 0%{opacity:0;transform:translateY(20px)} 100%{opacity:1;transform:translateY(0)} }
 
 /* ── FORM STYLES ── */
 .stButton > button {
@@ -143,6 +160,70 @@ div[data-testid="stForm"] {
     padding: 20px !important;
 }
 
+
+/* ── PRICING CARDS WITH IMAGES — FIXED SIZING ── */
+.pricing-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #111;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #1f2937;
+    transition: all 0.3s ease;
+}
+
+.pricing-card-wrapper:hover {
+    transform: translateY(-8px);
+    border-color: #dc2626;
+    box-shadow: 0 15px 40px rgba(220,38,38,0.2);
+}
+
+.pricing-image {
+    width: 100%;
+    height: auto;           /* ← KEY FIX: let image keep its natural aspect ratio */
+    object-fit: contain;    /* ← KEY FIX: show full image, no cropping */
+    display: block;
+    background: #0a0a0a;
+}
+
+.pricing-content {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pricing-btn {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg,#dc2626,#991b1b) !important;
+    color: #fff !important;
+    font-family: Oswald, sans-serif !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    padding: 14px 16px !important;
+    border-radius: 6px !important;
+    text-decoration: none !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+}
+
+.pricing-btn:hover {
+    box-shadow: 0 8px 20px rgba(220,38,38,0.4) !important;
+    transform: scale(1.02);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 1300px;  /* ← increased from 1150px to fit 4 cards comfortably */
+    margin: 0 auto;
+    align-items: stretch;
+}
+
 /* ── MOBILE ── */
 @media (max-width: 768px) {
     .nav-inner  { padding: 10px 12px; }
@@ -150,7 +231,6 @@ div[data-testid="stForm"] {
     .nav-links  { gap: 10px; }
     .nav-links a { font-size: 0.6rem; letter-spacing: 1px; }
     .nav-spacer { height: 78px; }
-    #home,#about,#services,#pricing,#schedule,#contact { scroll-margin-top: 80px; }
 
     .hero-badge      { font-size: 0.58rem !important; padding: 5px 10px !important; }
     .logo-circle     { width: 115px !important; height: 115px !important; }
@@ -166,71 +246,27 @@ div[data-testid="stForm"] {
     .sec-sub    { font-size: 0.65rem !important; }
     .sec-wrap   { padding: 50px 14px !important; }
 
-    .about-flex      { flex-direction: column !important; }
-    .about-visual    { flex: none !important; width: 100% !important; }
-    .about-text-p    { font-size: 0.82rem !important; }
-    .about-mini-val  { font-size: 1.3rem !important; }
-    .about-mini-lbl  { font-size: 0.55rem !important; }
-
-    .why-grid   { gap: 8px !important; }
-    .why-card   { padding: 16px 10px !important; }
-    .why-icon   { font-size: 1.5rem !important; }
-    .why-ttl    { font-size: 0.7rem !important; }
-    .why-dsc    { font-size: 0.65rem !important; }
-
-    .svc-card   { padding: 20px 14px !important; }
-    .svc-icon   { font-size: 1.8rem !important; }
-    .svc-ttl    { font-size: 0.8rem !important; }
-    .svc-dsc    { font-size: 0.75rem !important; }
-
-    .num-cell   { padding: 20px 8px !important; }
-    .num-val    { font-size: 2rem !important; }
-    .num-lbl    { font-size: 0.6rem !important; }
-
-    .pricing-grid   { gap: 8px !important; }
-    .plan-card      { padding: 20px 10px !important; }
-    .plan-nm        { font-size: 0.95rem !important; }
-    .plan-pr        { font-size: 2.2rem !important; }
-    .plan-pd        { font-size: 0.6rem !important; }
-    .plan-ft        { font-size: 0.62rem !important; padding: 5px 0 !important; }
-    .plan-btn       { font-size: 0.62rem !important; padding: 9px !important; }
-    .plan-badge     { font-size: 0.52rem !important; padding: 4px 10px !important; }
+    .pricing-grid   { grid-template-columns: 1fr !important; }
+    .pricing-name   { font-size: 1.1rem !important; }
+    .pricing-price  { font-size: 2.2rem !important; }
 
     .sched-hd   { padding: 10px 6px !important; font-size: 0.6rem !important; }
     .sched-day  { font-size: 0.6rem !important; padding: 10px 6px !important; }
-    .sched-time { font-size: 0.6rem !important; padding: 10px 4px !important; }
-    .sched-st   { font-size: 0.55rem !important; padding: 10px 4px !important; }
 
     .test-card  { padding: 18px 14px !important; }
-    .test-star  { font-size: 0.85rem !important; }
-    .test-txt   { font-size: 0.8rem !important; }
-    .test-auth  { font-size: 0.7rem !important; }
-
-    .crd-grid   { gap: 8px !important; }
-    .crd-card   { padding: 18px 8px !important; }
-    .crd-icon   { font-size: 1.5rem !important; }
-    .crd-lbl    { font-size: 0.55rem !important; }
-    .crd-val    { font-size: 0.75rem !important; }
-
     .cta-t      { font-size: 1.8rem !important; }
-    .cta-s      { font-size: 0.85rem !important; }
-    .cta-btn    { font-size: 0.8rem !important; padding: 12px 18px !important; }
     .ft-brand   { font-size: 1.5rem !important; }
-    .ft-lnk     { font-size: 0.65rem !important; }
-    .ft-inf     { font-size: 0.72rem !important; }
 }
-@media (max-width: 400px) {
-    .hero-t1    { font-size: 2rem !important; }
-    .hero-t2    { font-size: 2.6rem !important; }
-    .plan-pr    { font-size: 1.8rem !important; }
-    .num-val    { font-size: 1.6rem !important; }
-    .sec-title  { font-size: 1.8rem !important; }
+
+@media (max-width: 600px) {
+    .pricing-grid { grid-template-columns: 1fr !important; }
+    .pricing-image { height: 150px !important; }
+    .pricing-price { font-size: 2rem !important; }
 }
 </style>
 """
 
 st.markdown(get_styles(), unsafe_allow_html=True)
-
 
 # ── helpers ─────────────────────────────────────────────────
 def divider():
@@ -266,7 +302,7 @@ def marquee_inner():
 
 
 # ══════════════════════════════════════════════════════════════
-# FIXED NAV + MARQUEE — one single HTML block, no Streamlit gap
+# FIXED NAV + MARQUEE
 # ══════════════════════════════════════════════════════════════
 st.markdown(
     '<div class="fixed-nav">'
@@ -288,14 +324,12 @@ st.markdown(
       '</div>'
       '<div class="red-divider"></div>'
     '</div>'
-    # spacer keeps content below the fixed nav
     '<div class="nav-spacer"></div>',
     unsafe_allow_html=True
 )
 
-
 # ══════════════════════════════════════════════════════════════
-# HERO
+# HERO SECTION
 # ══════════════════════════════════════════════════════════════
 st.markdown(
     '<div id="home" class="sec-wrap" style="'
@@ -359,11 +393,11 @@ st.markdown(
         '<div class="stat-lbl" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Years</div>'
       '</div>'
       '<div class="stat-col" style="text-align:center;padding:10px 22px;border-right:1px solid #374151;">'
-        '<div class="stat-num" style="font-family:Bebas Neue,cursive;font-size:2.5rem;color:#dc2626;line-height:1;">500+</div>'
+        '<div class="stat-num" style="font-family:Bebas Neue,cursive;font-size:2.5rem;color:#dc2626;line-height:1;">100+</div>'
         '<div class="stat-lbl" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Members</div>'
       '</div>'
       '<div class="stat-col" style="text-align:center;padding:10px 22px;border-right:1px solid #374151;">'
-        '<div class="stat-num" style="font-family:Bebas Neue,cursive;font-size:2.5rem;color:#dc2626;line-height:1;">994</div>'
+        '<div class="stat-num" style="font-family:Bebas Neue,cursive;font-size:2.5rem;color:#dc2626;line-height:1;">1k +</div>'
         '<div class="stat-lbl" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Followers</div>'
       '</div>'
       '<div class="stat-col" style="text-align:center;padding:10px 22px;">'
@@ -376,9 +410,8 @@ st.markdown(
 )
 divider()
 
-
 # ══════════════════════════════════════════════════════════════
-# ABOUT
+# ABOUT SECTION
 # ══════════════════════════════════════════════════════════════
 st.markdown(
     '<div id="about" class="sec-wrap" style="background:#050505;padding:75px 30px;">',
@@ -398,19 +431,19 @@ st.markdown(
         '</p>'
         '<p class="about-text-p" style="font-family:Rajdhani,sans-serif;color:#9ca3af;'
         'font-size:1.05rem;line-height:1.9;margin-bottom:24px;">'
-        'Located on <strong style="color:#fff;">Kodibaga Main Road, Karwar</strong>, we offer '
+        'Located on <strong style="color:#fff;">Green street Road, Karwar</strong>, we offer '
         'state-of-the-art equipment, expert trainers, and an electrifying atmosphere that pushes '
         'you beyond limits every day.'
         '</p>'
         '<div style="display:flex;gap:10px;flex-wrap:wrap;">'
           '<div style="background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.35);'
           'border-radius:6px;padding:10px 18px;text-align:center;">'
-            '<div class="about-mini-val" style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:1.6rem;line-height:1;">10+</div>'
+            '<div class="about-mini-val" style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:1.6rem;line-height:1;">12+</div>'
             '<div class="about-mini-lbl" style="font-family:Oswald,sans-serif;color:#9ca3af;font-size:0.65rem;letter-spacing:2px;">YEARS</div>'
           '</div>'
           '<div style="background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.35);'
           'border-radius:6px;padding:10px 18px;text-align:center;">'
-            '<div class="about-mini-val" style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:1.6rem;line-height:1;">500+</div>'
+            '<div class="about-mini-val" style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:1.6rem;line-height:1;">100+</div>'
             '<div class="about-mini-lbl" style="font-family:Oswald,sans-serif;color:#9ca3af;font-size:0.65rem;letter-spacing:2px;">MEMBERS</div>'
           '</div>'
           '<div style="background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.35);'
@@ -439,7 +472,6 @@ st.markdown(
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
 
-
 # ══════════════════════════════════════════════════════════════
 # WHY CHOOSE US
 # ══════════════════════════════════════════════════════════════
@@ -451,7 +483,7 @@ why_items = [
     ("⚙️","MODERN EQUIPMENT",  "State-of-the-art machines and free weights for the ultimate workout."),
     ("🔥","INTENSE ATMOSPHERE", "An electrifying environment that keeps you motivated every day."),
     ("👥","STRONG COMMUNITY",   "A brotherhood of fitness enthusiasts pushing each other to excel."),
-    ("📍","PRIME LOCATION",     "Conveniently located on Kodibaga Main Road, Karwar."),
+    ("📍","PRIME LOCATION",     "Conveniently located on Green Street Road, Karwar."),
 ]
 wg = '<div class="why-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1100px;margin:0 auto;">'
 for ic,ti,de in why_items:
@@ -467,7 +499,6 @@ wg += '</div>'
 st.markdown(wg, unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
-
 
 # ══════════════════════════════════════════════════════════════
 # SERVICES
@@ -500,7 +531,6 @@ st.markdown(sg, unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
 
-
 # ══════════════════════════════════════════════════════════════
 # STATS BANNER
 # ══════════════════════════════════════════════════════════════
@@ -512,11 +542,11 @@ st.markdown(
     '<div style="display:grid;grid-template-columns:repeat(4,1fr);max-width:900px;margin:0 auto;'
     'background:#0a0a0a;border-radius:12px;overflow:hidden;border:1px solid #1f2937;">'
     '<div class="num-cell" style="padding:28px 10px;text-align:center;border-right:1px solid #1f2937;">'
-    '<div class="num-val" style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">10+</div>'
+    '<div class="num-val" style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">12+</div>'
     '<div class="num-lbl" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;">Years</div>'
     '</div>'
     '<div class="num-cell" style="padding:28px 10px;text-align:center;border-right:1px solid #1f2937;">'
-    '<div class="num-val" style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">500+</div>'
+    '<div class="num-val" style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">100+</div>'
     '<div class="num-lbl" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;">Members</div>'
     '</div>'
     '<div class="num-cell" style="padding:28px 10px;text-align:center;border-right:1px solid #1f2937;">'
@@ -524,7 +554,7 @@ st.markdown(
     '<div class="num-lbl" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;">Equipment</div>'
     '</div>'
     '<div class="num-cell" style="padding:28px 10px;text-align:center;">'
-    '<div class="num-val" style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">994</div>'
+    '<div class="num-val" style="font-family:Bebas Neue,cursive;font-size:2.8rem;color:#dc2626;line-height:1;">1K +</div>'
     '<div class="num-lbl" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;">Followers</div>'
     '</div>'
     '</div>'
@@ -533,66 +563,57 @@ st.markdown(
 )
 divider()
 
-
 # ══════════════════════════════════════════════════════════════
-# PRICING
+# PRICING WITH IMAGES
 # ══════════════════════════════════════════════════════════════
 st.markdown('<div id="pricing" class="sec-wrap" style="background:#000;padding:75px 30px;">', unsafe_allow_html=True)
 section_header("MEMBERSHIP","PLANS","INVEST IN YOUR BEST SELF")
 
-@st.cache_data(show_spinner=False)
-def get_pricing_html():
-    def card(name, price, features, featured=False):
-        bg     = "linear-gradient(135deg,#1a0000,#2d0000)" if featured else "#111"
-        border = "2px solid #dc2626" if featured else "1px solid #1f2937"
-        shadow = "box-shadow:0 20px 60px rgba(220,38,38,0.3);" if featured else ""
-        badge  = (
-            '<div class="plan-badge" style="position:absolute;top:0;left:50%;transform:translateX(-50%);'
-            'background:linear-gradient(90deg,#dc2626,#991b1b);color:#fff;font-family:Oswald,sans-serif;'
-            'font-size:0.65rem;letter-spacing:2px;padding:5px 14px;border-radius:0 0 8px 8px;'
-            'white-space:nowrap;">MOST POPULAR</div>'
-        ) if featured else ""
-        sep = "#3f0000" if featured else "#1f2937"
-        feats = "".join([
-            f'<div class="plan-ft" style="font-family:Rajdhani,sans-serif;color:#d1d5db;padding:7px 0;'
-            f'border-bottom:1px solid {sep};font-size:0.88rem;">✅ {f}</div>'
-            for f in features
-        ])
-        return (
-            f'<div class="plan-card" style="background:{bg};border:{border};border-radius:12px;'
-            f'padding:28px 18px;text-align:center;{shadow}position:relative;">'
-            f'{badge}'
-            f'<div class="plan-nm" style="font-family:Bebas Neue,cursive;font-size:1.4rem;color:#fff;'
-            f'letter-spacing:2px;margin-bottom:4px;{"margin-top:16px;" if featured else ""}">{name}</div>'
-            f'<div class="plan-pr" style="font-family:Bebas Neue,cursive;font-size:3rem;color:#dc2626;'
-            f'line-height:1;margin:14px 0 4px;">'
-            f'<span style="font-family:Oswald,sans-serif;font-size:1.1rem;color:#9ca3af;vertical-align:super;">Rs.</span>'
-            f'{price}</div>'
-            f'<div class="plan-pd" style="font-family:Rajdhani,sans-serif;color:#6b7280;font-size:0.75rem;'
-            f'letter-spacing:2px;margin-bottom:18px;">PER MONTH</div>'
-            f'<div style="text-align:left;margin-bottom:20px;">{feats}</div>'
-            f'<a href="tel:9483834949" class="plan-btn" style="display:block;'
-            f'background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;font-family:Oswald,sans-serif;'
-            f'font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;padding:12px;'
-            f'border-radius:6px;text-decoration:none;">📞 ENROLL NOW</a>'
-            f'</div>'
-        )
-    p  = '<div class="pricing-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1050px;margin:0 auto;align-items:start;">'
-    p += card("🥉 STARTER","599",["Gym Access — All Equipment","Locker Room Access","Basic Fitness Assessment","Group Workout Sessions","Cardio Zone Access"])
-    p += card("🥇 ULTIMATE","999",["Everything in Starter","Personal Training (4 Sessions)","Nutrition Consultation","Body Composition Analysis","Progress Tracking","Custom Diet Plan"],featured=True)
-    p += card("🏆 CHAMPION","1499",["Everything in Ultimate","Unlimited Personal Training","Custom Workout Programs","Advanced Nutrition Plan","Monthly Body Analysis","Competition Prep","24/7 WhatsApp Support"])
-    p += '</div>'
-    p += ('<div style="text-align:center;margin-top:28px;">'
-          '<div style="display:inline-block;background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.3);'
-          'border-radius:8px;padding:11px 20px;max-width:95%;">'
-          '<span style="font-family:Oswald,sans-serif;color:#dc2626;font-size:0.8rem;letter-spacing:2px;">'
-          'QUARTERLY &amp; ANNUAL DISCOUNTS AVAILABLE — CALL 9483834949</span></div></div>')
-    return p
+# Just image paths - no need for name/price/features since image has it all
+pricing_images = [
+    "images/Price1.jpeg",
+    "images/Price2.jpeg",
+    "images/Price3.jpeg",
+    "images/Price4.jpeg",
 
-st.markdown(get_pricing_html(), unsafe_allow_html=True)
+]
+
+# Generate pricing HTML — image + button only
+pricing_html = '<div class="pricing-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1300px;margin:0 auto;align-items:stretch;">'
+
+for image_path in pricing_images:
+    img_data = get_image_base64(image_path)
+    img_tag = f'<img src="{img_data}" alt="Pricing Plan" class="pricing-image">' if img_data else '<div style="padding:40px;text-align:center;color:#6b7280;">Image not found</div>'
+    
+    card_html = (
+        f'<div class="pricing-card-wrapper">'
+        f'{img_tag}'
+        f'<div class="pricing-content">'
+        f'<a href="tel:9483834949" class="pricing-btn">📞 ENROLL NOW</a>'
+        f'</div>'
+        f'</div>'
+    )
+    pricing_html += card_html
+
+pricing_html += '</div>'
+
+st.markdown(pricing_html, unsafe_allow_html=True)
+
+# Discount banner
+st.markdown(
+    '<div style="text-align:center;margin-top:40px;">'
+    '<div style="display:inline-block;background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.3);'
+    'border-radius:8px;padding:14px 24px;max-width:95%;">'
+    '<span style="font-family:Oswald,sans-serif;color:#dc2626;font-size:0.85rem;letter-spacing:2px;">'
+    '⏰ QUARTERLY &amp; ANNUAL DISCOUNTS AVAILABLE — CALL 9483834949'
+    '</span>'
+    '</div>'
+    '</div>',
+    unsafe_allow_html=True
+)
+
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
-
 
 # ══════════════════════════════════════════════════════════════
 # SCHEDULE
@@ -640,7 +661,6 @@ st.markdown(get_schedule_html(), unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
 
-
 # ══════════════════════════════════════════════════════════════
 # TESTIMONIALS
 # ══════════════════════════════════════════════════════════════
@@ -674,7 +694,6 @@ st.markdown(get_testimonials_html(), unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
 
-
 # ══════════════════════════════════════════════════════════════
 # CONTACT
 # ══════════════════════════════════════════════════════════════
@@ -682,13 +701,12 @@ st.markdown('<div id="contact" class="sec-wrap" style="background:#050505;paddin
 section_header("FIND &amp;","CONNECT","WE'D LOVE TO HEAR FROM YOU")
 
 cards = [
-    ("📞","CALL / WHATSAPP","9483834949","tel:9483834949"),
-    ("📸","INSTAGRAM","@sameers_ultimatefitness<br><span style='font-size:0.75rem;color:#6b7280;'>994 Followers</span>",
-     "https://www.instagram.com/sameers_ultimatefitness/"),
-    ("📍","LOCATION","Kodibaga Main Road,<br>Karwar, Karnataka 581301",
-     "https://maps.google.com/?q=Kodibaga+Main+Road+Karwar+Karnataka+581301"),
-    ("⏰","HOURS","Mon–Sat: 5:30AM–9:30PM<br>Sunday: 6AM–10AM",None),
+    ("📞", "CALL / WHATSAPP", "9483834949", "tel:9483834949"),
+    ("📸", "INSTAGRAM", "@sameers_ultimatefitness<br><span style='font-size:0.75rem;color:#6b7280;'>1000+ Followers</span>", "https://www.instagram.com/sameers_ultimatefitness/"),
+    ("📍", "LOCATION", "Green Street Road,<br>Karwar, Karnataka 581301", "https://www.google.com/maps/search/?api=1&query=Sameer%27s%20Ultimate%20Fitness%20%26%20Gym%2C%20Karwar"),
+    ("⏰", "HOURS", "Mon–Sat: 5:30AM–9:30PM<br>Sunday: 6AM–10AM", None),
 ]
+
 cg = '<div class="crd-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1000px;margin:0 auto 45px;">'
 for ic,lb,vl,lk in cards:
     inner = (
@@ -704,18 +722,20 @@ cg += '</div>'
 st.markdown(cg, unsafe_allow_html=True)
 
 st.markdown(
-    '<div style="max-width:900px;margin:0 auto;border-radius:12px;overflow:hidden;'
-    'border:2px solid #dc2626;box-shadow:0 10px 40px rgba(220,38,38,0.2);">'
-    '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3863.87!2d74.1279!3d14.8002!'
-    '2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbe8f6d0dffffff%3A0x1!'
-    '2sKodibaga%20Main%20Rd%2C%20Karwar%2C%20Karnataka%20581301!5e0!3m2!1sen!2sin!4v1700000000000" '
-    'width="100%" height="280" style="border:0;display:block;" allowfullscreen="" loading="lazy"></iframe>'
+    '<div style="max-width:900px;margin:0 auto;border-radius:12px;overflow:hidden;border:2px solid #dc2626;box-shadow:0 10px 40px rgba(220,38,38,0.2);">'
+    '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3857.2664353260902!2d74.12675567371929!3d14.810297385701233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbe611b4a2f1e83%3A0x47c6ec0f3b613028!2sSameer\'s%20Ultimate%20Fitness%20%26%20Gym!5e0!3m2!1sen!2sin!4v1791888489396!5m2!1sen!2sin" '
+    'width="100%" '
+    'height="350" '
+    'style="border:0;display:block;" '
+    'allowfullscreen="" '
+    'loading="lazy" '
+    'referrerpolicy="strict-origin-when-cross-origin">'
+    '</iframe>'
     '</div>',
     unsafe_allow_html=True
 )
 st.markdown('</div>', unsafe_allow_html=True)
 divider()
-
 
 # ══════════════════════════════════════════════════════════════
 # CONTACT FORM
@@ -751,7 +771,6 @@ with col2:
 st.markdown('<div style="padding-bottom:50px;"></div>', unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
-
 # ══════════════════════════════════════════════════════════════
 # CTA BANNER
 # ══════════════════════════════════════════════════════════════
@@ -778,7 +797,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
 # ══════════════════════════════════════════════════════════════
 # FOOTER
 # ══════════════════════════════════════════════════════════════
@@ -799,7 +817,7 @@ st.markdown(
     '</div>'
     '<div style="display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-bottom:20px;">'
     '<span class="ft-inf" style="font-family:Rajdhani,sans-serif;color:#6b7280;font-size:0.88rem;">📞 9483834949</span>'
-    '<span class="ft-inf" style="font-family:Rajdhani,sans-serif;color:#6b7280;font-size:0.88rem;">📍 Kodibaga Main Road, Karwar, KA 581301</span>'
+    '<span class="ft-inf" style="font-family:Rajdhani,sans-serif;color:#6b7280;font-size:0.88rem;">📍 Greenstreet Road, Karwar, KA 581301</span>'
     '</div>'
     '<div style="border-top:1px solid #111;padding-top:16px;">'
     '<span style="font-family:Rajdhani,sans-serif;color:#374151;font-size:0.78rem;">'
