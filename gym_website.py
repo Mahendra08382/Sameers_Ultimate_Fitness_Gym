@@ -6,6 +6,30 @@ from pathlib import Path
 import base64
 from pathlib import Path
 
+import requests
+from datetime import datetime
+
+# ── Helper function stays OUTSIDE and ABOVE the form ──
+def send_to_google_sheets(name, phone, goal, plan, msg):
+    """Send form data to Google Sheets via Google Apps Script Web App"""
+    webhook_url = "https://script.google.com/macros/s/AKfycbwx0JpHE-yJH1-E7loVkPCV84M277yVLp4uearIhQO-M_6uivdyHWs0-P8bS7lTTNzx/exec"
+    
+    payload = {
+        "name": name,
+        "phone": phone,
+        "goal": goal,
+        "plan": plan,
+        "message": msg,
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
+    try:
+        response = requests.post(webhook_url, json=payload, timeout=5)
+        return response.status_code == 200
+    except Exception as e:
+        print(f"Error: {e}")
+        return False
+
+
 @st.cache_data(show_spinner=False)
 def get_image_base64(image_path):
     """Convert local image to base64 string for embedding in HTML"""
@@ -749,17 +773,24 @@ with col2:
             "🏆 Competition Preparation","🧘 General Fitness & Wellness",
         ])
         plan = st.selectbox("PREFERRED PLAN", [
-            "🥉 Starter Plan — Rs.599/month","🥇 Ultimate Plan — Rs.999/month",
-            "🏆 Champion Plan — Rs.1499/month","📅 Quarterly Plan",
+            "🥉 Starter Plan — Rs.1500/month","🥇 Ultimate Plan — Rs.2000/month",
+            "🏆 Champion Plan — Rs.4000/month","📅 Quarterly Plan",
             "📅 Annual Plan","❓ Not sure — Please advise",
         ])
         msg  = st.text_area("MESSAGE (OPTIONAL)", height=90,
                             placeholder="Tell us about your fitness goals...")
+        
+        # ✅ form_submit_button MUST be inside the `with st.form(...)` block
         sub  = st.form_submit_button("💪 SEND — LET'S GET STARTED!")
+        
         if sub:
             if name.strip() and phone.strip():
-                st.success(f"✅ Awesome {name.upper()}! We'll call you on {phone} within 24 hours. Get ready to transform! 💪")
-                st.balloons()
+                success = send_to_google_sheets(name, phone, goal, plan, msg)
+                if success:
+                    st.success(f"✅ Awesome {name.upper()}! We'll call you on {phone} within 24 hours. Get ready to transform! 💪")
+                    st.balloons()
+                else:
+                    st.warning("⚠️ Something went wrong submitting your info. Please call us directly at 9483834949")
             else:
                 st.error("⚠️ Please enter your name and phone number.")
 
