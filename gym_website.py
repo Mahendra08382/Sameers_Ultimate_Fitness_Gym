@@ -3,19 +3,21 @@ import base64
 from pathlib import Path
 
 # ── Helper to convert local image to base64 ──
+import base64
+from pathlib import Path
+
 @st.cache_data(show_spinner=False)
 def get_image_base64(image_path):
     """Convert local image to base64 string for embedding in HTML"""
     try:
         with open(image_path, "rb") as img_file:
             encoded = base64.b64encode(img_file.read()).decode()
-        # Detect image type from extension
         ext = Path(image_path).suffix.lower().replace('.', '')
         if ext == 'jpg':
             ext = 'jpeg'
         return f"data:image/{ext};base64,{encoded}"
     except FileNotFoundError:
-        return "" 
+        return ""
 
 st.set_page_config(
     page_title="Sameer's Ultimate Fitness & Gym",
@@ -331,6 +333,9 @@ st.markdown(
 # ══════════════════════════════════════════════════════════════
 # HERO SECTION
 # ══════════════════════════════════════════════════════════════
+# Get logo as base64
+logo_data = get_image_base64("images/logo.png")  # Update path to your logo file
+
 st.markdown(
     '<div id="home" class="sec-wrap" style="'
     'background:radial-gradient(ellipse at top,#1a0000 0%,#000 50%,#050505 100%);'
@@ -342,19 +347,12 @@ st.markdown(
     'text-transform:uppercase;padding:7px 18px;border-radius:2px;margin-bottom:24px;'
     'white-space:nowrap;">EST. 2014 — KARWAR\'S #1 FITNESS DESTINATION</div>'
 
-    '<div class="logo-circle" style="width:155px;height:155px;border-radius:50%;'
-    'background:linear-gradient(135deg,#1a1a1a,#000);border:3px solid #dc2626;'
+    '<div class="logo-circle" style="width:180px;height:180px;border-radius:50%;'
+    'background:#000;border:3px solid #dc2626;'
     'display:flex;align-items:center;justify-content:center;margin:0 auto 26px;'
-    'animation:glow 2s ease-in-out infinite alternate;will-change:box-shadow;">'
-      '<div style="text-align:center;padding:10px;">'
-        '<div style="font-size:1.9rem;">🏋️</div>'
-        '<div style="font-family:Bebas Neue,cursive;color:#fff;font-size:1rem;'
-        'letter-spacing:2px;line-height:1.15;">SAMEER\'S</div>'
-        '<div style="font-family:Bebas Neue,cursive;color:#dc2626;font-size:1.25rem;'
-        'letter-spacing:2px;line-height:1.1;">ULTIMATE</div>'
-        '<div style="font-family:Rajdhani,sans-serif;color:#6b7280;font-size:0.45rem;'
-        'letter-spacing:1px;">FITNESS &amp; GYM</div>'
-      '</div>'
+    'animation:glow 2s ease-in-out infinite alternate;will-change:box-shadow;overflow:hidden;">'
+    f'<img src="{logo_data}" alt="Sameer\'s Ultimate Fitness Logo" '
+    'style="width:85%;height:85%;object-fit:contain;">'
     '</div>'
 
     '<div class="hero-t1" style="font-family:Bebas Neue,cursive;'
@@ -393,11 +391,11 @@ st.markdown(
         '<div class="stat-lbl" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Years</div>'
       '</div>'
       '<div class="stat-col" style="text-align:center;padding:10px 22px;border-right:1px solid #374151;">'
-        '<div class="stat-num" style="font-family:Bebas Neue,cursive;font-size:2.5rem;color:#dc2626;line-height:1;">100+</div>'
+        '<div class="stat-num" style="font-family:Bebas Neue,cursive;font-size:2.5rem;color:#dc2626;line-height:1;">500+</div>'
         '<div class="stat-lbl" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Members</div>'
       '</div>'
       '<div class="stat-col" style="text-align:center;padding:10px 22px;border-right:1px solid #374151;">'
-        '<div class="stat-num" style="font-family:Bebas Neue,cursive;font-size:2.5rem;color:#dc2626;line-height:1;">1k +</div>'
+        '<div class="stat-num" style="font-family:Bebas Neue,cursive;font-size:2.5rem;color:#dc2626;line-height:1;">994</div>'
         '<div class="stat-lbl" style="font-family:Oswald,sans-serif;color:#6b7280;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;">Followers</div>'
       '</div>'
       '<div class="stat-col" style="text-align:center;padding:10px 22px;">'
@@ -408,7 +406,6 @@ st.markdown(
     '</div>',
     unsafe_allow_html=True
 )
-divider()
 
 # ══════════════════════════════════════════════════════════════
 # ABOUT SECTION
@@ -624,30 +621,28 @@ section_header("GYM","SCHEDULE","WE'RE OPEN WHEN YOU NEED US")
 @st.cache_data(show_spinner=False)
 def get_schedule_html():
     days = [
-        ("MONDAY",   "5:30AM–10AM","4PM–9:30PM","✅ OPEN",   "#10b981","#111"),
-        ("TUESDAY",  "5:30AM–10AM","4PM–9:30PM","✅ OPEN",   "#10b981","#0a0a0a"),
-        ("WEDNESDAY","5:30AM–10AM","4PM–9:30PM","✅ OPEN",   "#10b981","#111"),
-        ("THURSDAY", "5:30AM–10AM","4PM–9:30PM","✅ OPEN",   "#10b981","#0a0a0a"),
-        ("FRIDAY",   "5:30AM–10AM","4PM–9:30PM","✅ OPEN",   "#10b981","#111"),
-        ("SATURDAY", "5:30AM–11AM","4PM–8PM",   "✅ OPEN",   "#10b981","#0a0a0a"),
-        ("SUNDAY",   "6AM–10AM",   "Closed",    "⚡ LIMITED","#fbbf24","#111"),
+        ("MONDAY",   "6AM–10PM", "✅ OPEN",    "#10b981", "#111"),
+        ("TUESDAY",  "6AM–10PM", "✅ OPEN",    "#10b981", "#0a0a0a"),
+        ("WEDNESDAY","6AM–10PM", "✅ OPEN",    "#10b981", "#111"),
+        ("THURSDAY", "6AM–10PM", "✅ OPEN",    "#10b981", "#0a0a0a"),
+        ("FRIDAY",   "6AM–10PM", "✅ OPEN",    "#10b981", "#111"),
+        ("SATURDAY", "6AM–10PM", "✅ OPEN",    "#10b981", "#0a0a0a"),
+        ("SUNDAY",   "Closed",   "❌ CLOSED",  "#ef4444", "#111"),
     ]
     s = ('<div style="max-width:850px;margin:0 auto;border-radius:12px;overflow:hidden;'
          'border:1px solid #1f2937;overflow-x:auto;">'
          '<table style="width:100%;border-collapse:collapse;min-width:320px;">'
          '<thead><tr style="background:linear-gradient(135deg,#dc2626,#991b1b);">'
          '<th class="sched-hd" style="padding:13px 14px;font-family:Oswald,sans-serif;color:#fff;font-size:0.82rem;letter-spacing:2px;text-align:left;font-weight:600;">DAY</th>'
-         '<th class="sched-hd" style="padding:13px 14px;font-family:Oswald,sans-serif;color:#fff;font-size:0.82rem;letter-spacing:2px;text-align:left;font-weight:600;">MORNING</th>'
-         '<th class="sched-hd" style="padding:13px 14px;font-family:Oswald,sans-serif;color:#fff;font-size:0.82rem;letter-spacing:2px;text-align:left;font-weight:600;">EVENING</th>'
+         '<th class="sched-hd" style="padding:13px 14px;font-family:Oswald,sans-serif;color:#fff;font-size:0.82rem;letter-spacing:2px;text-align:left;font-weight:600;">TIMING</th>'
          '<th class="sched-hd" style="padding:13px 14px;font-family:Oswald,sans-serif;color:#fff;font-size:0.82rem;letter-spacing:2px;text-align:left;font-weight:600;">STATUS</th>'
          '</tr></thead><tbody>')
-    for day,mo,ev,st_,sc,bg in days:
-        dc = "#dc2626" if "OPEN" in st_ else "#6b7280"
+    for day, timing, status, sc, bg in days:
+        dc = "#dc2626" if "OPEN" in status else "#6b7280"
         s += (f'<tr style="background:{bg};border-bottom:1px solid #1f2937;">'
               f'<td class="sched-day"  style="padding:12px 14px;font-family:Oswald,sans-serif;color:{dc};font-size:0.82rem;letter-spacing:1px;">{day}</td>'
-              f'<td class="sched-time" style="padding:12px 14px;font-family:Rajdhani,sans-serif;color:#d1d5db;font-size:0.85rem;">{mo}</td>'
-              f'<td class="sched-time" style="padding:12px 14px;font-family:Rajdhani,sans-serif;color:#d1d5db;font-size:0.85rem;">{ev}</td>'
-              f'<td class="sched-st"   style="padding:12px 14px;font-family:Rajdhani,sans-serif;color:{sc};font-size:0.82rem;">{st_}</td>'
+              f'<td class="sched-time" style="padding:12px 14px;font-family:Rajdhani,sans-serif;color:#d1d5db;font-size:0.85rem;">{timing}</td>'
+              f'<td class="sched-st"   style="padding:12px 14px;font-family:Rajdhani,sans-serif;color:{sc};font-size:0.82rem;">{status}</td>'
               '</tr>')
     s += ('</tbody></table></div>'
           '<div style="text-align:center;margin-top:20px;">'
@@ -702,9 +697,9 @@ section_header("FIND &amp;","CONNECT","WE'D LOVE TO HEAR FROM YOU")
 
 cards = [
     ("📞", "CALL / WHATSAPP", "9483834949", "tel:9483834949"),
-    ("📸", "INSTAGRAM", "@sameers_ultimatefitness<br><span style='font-size:0.75rem;color:#6b7280;'>1000+ Followers</span>", "https://www.instagram.com/sameers_ultimatefitness/"),
+    ("📸", "INSTAGRAM", "@sameers_ultimatefitness<br><span style='font-size:0.75rem;color:#6b7280;'>994 Followers</span>", "https://www.instagram.com/sameers_ultimatefitness/"),
     ("📍", "LOCATION", "Green Street Road,<br>Karwar, Karnataka 581301", "https://www.google.com/maps/search/?api=1&query=Sameer%27s%20Ultimate%20Fitness%20%26%20Gym%2C%20Karwar"),
-    ("⏰", "HOURS", "Mon–Sat: 5:30AM–9:30PM<br>Sunday: 6AM–10AM", None),
+    ("⏰", "HOURS", "Mon–Sat: 6AM–10PM<br>Sunday: Closed", None),
 ]
 
 cg = '<div class="crd-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1000px;margin:0 auto 45px;">'
